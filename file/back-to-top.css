@@ -1,0 +1,19 @@
+.back-to-top {
+			position: fixed;
+			bottom: 2em;
+			right: 0px;
+			text-decoration: none;
+			color: #ffffff;
+			background-color:#342f30;
+			font-family: Arial, Verdana;
+			font-size: 14px;
+			padding:  1em 1em;
+			display: none;
+			border-radius:10px;
+			margin:0px 6px;
+			
+		}
+
+.back-to-top:hover {	
+			background-color:#342f30;
+			}

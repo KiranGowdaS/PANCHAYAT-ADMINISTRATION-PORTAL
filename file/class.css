@@ -1,0 +1,129 @@
+a { color:#731a23; }
+/*p    {margin-top:20px; margin-bottom:20px;}*/
+
+.greytop, .greytopbig, .whitetext, .blacktext, .greylink, .blacktextbig, .whitetextbig, .blackbold, .greyheader {
+font-family:arial, verdana;
+font-size:12px;
+color: #908f8d;
+text-decoration:none;
+line-height:16px;
+}
+
+.greytop1{
+font-family:arial, verdana;
+font-size:14px;
+color: #908f8d;
+text-decoration:none;
+line-height:18px;
+}
+
+.greytopbig {
+font-size:20px;
+color: #908f8d;
+}
+
+
+.greyheader {
+font-size:20px;
+color: #908f8d;
+}
+
+.whitetext {
+color: #ffffff;
+}
+
+.blacktext {
+color: #000000;
+}
+
+.blackbold 
+{
+color: #000000;
+font-weight:bold;
+}
+
+.blacktextbig
+{
+color: #000000;
+font-size:20px;
+font-weight:bold;
+}
+
+.whitetextbig
+{
+color: #ffffff;
+font-size:32px;
+font-weight:bold;
+}
+
+.greylink {
+text-decoration:underline;
+color: #731a23;
+line-height:16px;
+}
+
+.bree_medium {
+font-family: 'Bree Serif', serif;
+font-size: 20px; 
+color: #cf7773;
+}
+
+
+.bree_huge {
+font-family: 'Bree Serif', serif;
+font-size: 26px; 
+font-weight:normal;
+color: #8f8e8c;
+text-decoration:none;
+}
+
+
+.content_header {
+font-family: 'Bree Serif', serif;
+font-size: 14px; 
+font-weight:normal;
+color: #000000;
+text-decoration:none;
+}
+
+
+.pink_button {
+
+font-family: 'Bree Serif', serif;
+font-size:14px; 
+color:#ffffff;
+background:#d07876;
+padding:10px 22px;
+text-decoration:none;
+border:none;
+-webkit-border-radius: 25px;
+-moz-border-radius: 25px;
+border-radius: 25px;
+
+}
+
+.gallery_button {
+
+font-family: 'Bree Serif', serif;
+font-size:14px; 
+color:#ffffff;
+background:#773b39;
+padding:10px 22px;
+text-decoration:none;
+border:none;
+-webkit-border-radius: 25px;
+-moz-border-radius: 25px;
+border-radius: 25px;
+}
+
+.curve_it {
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.shadow_it {
+-webkit-box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+-moz-box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+}

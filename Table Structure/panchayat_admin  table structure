@@ -1,0 +1,324 @@
+/* Table Structure Panchayat Adminstration */
+/* if server = localhost 
+	then 
+		Command "mysql -u root -p"
+		Password "<password by admin>"
+*/
+
+create database panchayat_admin;
+
+use panchayat_admin;
+
+create table login
+(fullname varchar(100),
+type varchar(20) not null default 'user',
+password varchar(100),
+emailid varchar(100) not null,
+primary key(emailid,type))engine='INNODOB';
+
+
+
+/*mysql> select * from login;
++----------+----------------+----------+------------------+
+| fullname | type           | password | emailid          |
++----------+----------------+----------+------------------+
+| admin    | admin          | admin    | admin            |
+| Akash    | citizen        | akash    | akash@gmail.com  |
+| Amogh    | citizen        | amogh    | amogh@gmail.com  |
+| Amogh    | memberofficial | amogh    | amogh@gmail.com  |
+| Anik     | citizen        | anik     | anik@gmail.com   |
+| Anik     | memberofficial | anik     | anik@gmail.com   |
+| Ankit    | citizen        | ankit    | ankit@gmail.com  |
+| Ashish   | citizen        | ashish   | ashish@gmail.com |
+| Ashish   | memberofficial | ashish   | ashish@gmail.com |
+| Rahul    | citizen        | rahul    | rahul@gmail.com  |
+| Rahul    | memberofficial | rahul    | rahul@gmail.com  |
+| Rohan    | citizen        | rohan    | rohan@gmail.com  |
+| Sohan    | citizen        | sohan    | sohan@gmail.com  |
+| vishal   | citizen        | vishal   | vishal@gmail.com |
+| vishal   | memberofficial | vishal   | vishal@gmail.com |
++----------+----------------+----------+------------------+
+
+
+
+mysql> desc login;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| fullname | varchar(100) | YES  |     | NULL    |       |
+| type     | varchar(20)  | NO   | PRI | user    |       |
+| password | varchar(100) | YES  |     | NULL    |       |
+| emailid  | varchar(100) | NO   | PRI | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+
+/* Inserting values 
+insert into login values('admin','admin','anik','admin','anik88888888@gmail.com');
+insert into login values('admin','admin','anik','memberofficial','anik8888888@gmail.com');
+*/
+
+
+
+create table citizen
+(ssn int(10) AUTO_INCREMENT,
+fullname varchar(100),
+age varchar(4),
+address varchar(1000),
+emailid varchar(100),
+ph_no int(10),
+password varchar(100),
+type varchar(100),
+voterid varchar(100),
+primary key(ssn,emailid))engine='INNODB';
+
+/*
+
+
+mysql> desc citizen;
++----------+---------------+------+-----+---------+----------------+
+| Field    | Type          | Null | Key | Default | Extra          |
++----------+---------------+------+-----+---------+----------------+
+| ssn      | int(10)       | NO   | PRI | NULL    | auto_increment |
+| fullname | varchar(100)  | YES  |     | NULL    |                |
+| age      | varchar(100)  | YES  |     | NULL    |                |
+| address  | varchar(1000) | YES  |     | NULL    |                |
+| emailid  | varchar(100)  | NO   | PRI |         |                |
+| ph_no    | int(10)       | YES  |     | NULL    |                |
+| password | varchar(100)  | YES  |     | NULL    |                |
+| type     | varchar(100)  | YES  |     | NULL    |                |
+| voterid  | varchar(100)  | YES  |     | NULL    |                |
++----------+---------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from citizen;
++-----+----------+------+-------------------------------+------------------+------------+----------+---------+-------------+
+| ssn | fullname | age  | address                       | emailid          | ph_no      | password | type    | voterid     |
++-----+----------+------+-------------------------------+------------------+------------+----------+---------+-------------+
+|  13 | Anik     | 45   | Brindaban Garden              | anik@gmail.com   |    2424214 | anik     | citizen | dfdersf     |
+|  14 | Amogh    | 44   | Gokak                         | amogh@gmail.com  |   86787878 | amogh    | citizen | adafaggg    |
+|  15 | Rahul    | 47   | Tambaram,Chennai              | rahul@gmail.com  |  473463536 | rahul    | citizen | scvfsgg     |
+|  16 | Ankit    | 22   | Hussain Sagar block,Hyderabad | ankit@gmail.com  |  242422554 | ankit    | citizen | svsvsgsgg   |
+|  17 | Akash    | 22   | 4th Block,Chamrajnagar        | akash@gmail.com  |   25523236 | akash    | citizen | gsgsgsge    |
+|  18 | Ashish   | 44   | rr nagar                      | ashish@gmail.com |   79897786 | ashish   | citizen | nfssigisg   |
+|  19 | vishal   | 45   | bangalore                     | vishal@gmail.com |  979778878 | vishal   | citizen | vjsigjsigj  |
+|  20 | Sohan    | 24   | gundlupete                    | sohan@gmail.com  |  987876789 | sohan    | citizen | faifaifhafh |
+|  21 | Rohan    | 24   | Belgaum                       | rohan@gmail.com  | 2147483647 | rohan    | citizen | sigsihgigh  |
++-----+----------+------+-------------------------------+------------------+------------+----------+---------+-------------+
+9 rows in set (0.00 sec)
+*/
+
+
+create table member
+(fullname varchar(100),
+address varchar(100),
+ph_no varchar(10),
+emailid varchar(100) primary key not null,
+age varchar(4),
+task varchar(100),
+constraint `fk_member_email` foreign key(emailid) references login(emailid)
+on delete cascade on update cascade
+)engine='INNODB';
+
+/*
+
+mysql> desc member;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| fullname | varchar(100) | YES  |     | NULL    |       |
+| address  | varchar(100) | YES  |     | NULL    |       |
+| ph_no    | varchar(10)  | YES  |     | NULL    |       |
+| emailid  | varchar(100) | NO   | PRI | NULL    |       |
+| age      | varchar(4)   | YES  |     | NULL    |       |
+| task     | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> select * from member;
++----------+------------------+-----------+------------------+------+--------------------------+
+| fullname | address          | ph_no     | emailid          | age  | task                     |
++----------+------------------+-----------+------------------+------+--------------------------+
+| Amogh    | Gokak            | 86787878  | amogh@gmail.com  | 44   | Education System         |
+| Anik     | Brindaban Garden | 2424214   | anik@gmail.com   | 45   | Health Care              |
+| Ashish   | rr nagar         | 79897786  | ashish@gmail.com | 44   | Street Light Problem     |
+| Rahul    | Tambaram,Chennai | 473463536 | rahul@gmail.com  | 47   | Water and Sanitation     |
+| vishal   | bangalore        | 979778878 | vishal@gmail.com | 45   | Roads and Transportation |
++----------+------------------+-----------+------------------+------+--------------------------+
+5 rows in set (0.00 sec)
+*/
+
+
+create table issues
+(issueno int(10) AUTO_INCREMENT,
+fullname varchar(100),
+company varchar(100),
+emailid varchar(100) not null,
+telephoneno int(10),
+issue varchar(100),
+comments varchar(100),
+progress varchar(20),
+issueover varchar(100),
+primary key(issueno,emailid))AUTO_INCREMENT=20000 DEFAULT CHARSET=latin1;
+
+/*
+
+mysql> desc issues;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| issueno     | int(10)      | NO   | PRI | NULL    | auto_increment |
+| fullname    | varchar(100) | YES  |     | NULL    |                |
+| company     | varchar(100) | YES  |     | NULL    |                |
+| emailid     | varchar(100) | NO   | PRI | NULL    |                |
+| telephoneno | int(10)      | YES  |     | NULL    |                |
+| issue       | varchar(100) | YES  |     | NULL    |                |
+| comments    | varchar(100) | YES  |     | NULL    |                |
+| progress    | varchar(20)  | YES  |     | NULL    |                |
+| issueover   | varchar(100) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+
+mysql> select * from issues;
++---------+----------+---------+------------------+-------------+----------------------+------------------------------------+----------+-----------+
+| issueno | fullname | company | emailid          | telephoneno | issue                | comments                           | progress | issueover |
++---------+----------+---------+------------------+-------------+----------------------+------------------------------------+----------+-----------+
+|       1 | Anik     | Student | anik@gmail.com   |    24124145 | Health Care          | Not Having a Hospital              |          | NULL      |
+|       2 | Rahul    | Student | rahul@gmail.com  |    43525244 | Education System     | College need to open.              |          | NULL      |
+|       3 | Ankit    | Student | ankit@gmail.com  |     3634636 | Water and Sanitation | The Water is not passing properly. |          | NULL      |
+|       5 | Ashish   | Student | ashish@gmail.com |     3363636 | Street Light Problem | Street light is not working.       |          | NULL      |
++---------+----------+---------+------------------+-------------+----------------------+------------------------------------+----------+-----------+
+4 rows in set (0.00 sec)
+
+*/
+
+create table adminwork
+(work varchar(100));
+
+create table dummy
+(dissueno int(10) AUTO_INCREMENT,
+fullname varchar(100),
+emailid varchar(100) not null,
+telephoneno int(10),
+issue varchar(100),
+comments varchar(100),
+progress varchar(20),
+primary key(dissueno,emailid))AUTO_INCREMENT=20000 DEFAULT CHARSET=latin1;
+
+/*
+
+mysql> desc dummy;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| dissueno    | int(10)      | NO   | PRI | NULL    | auto_increment |
+| fullname    | varchar(100) | YES  |     | NULL    |                |
+| emailid     | varchar(100) | NO   | PRI | NULL    |                |
+| telephoneno | int(10)      | YES  |     | NULL    |                |
+| issue       | varchar(100) | YES  |     | NULL    |                |
+| comments    | varchar(100) | YES  |     | NULL    |                |
+| progress    | varchar(20)  | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from dummy;
++----------+----------+------------------+-------------+----------------------+------------------------------------+----------+
+| dissueno | fullname | emailid          | telephoneno | issue                | comments                           | progress |
++----------+----------+------------------+-------------+----------------------+------------------------------------+----------+
+|       15 | Anik     | anik@gmail.com   |    24124145 | Health Care          | Not Having a Hospital              |          |
+|       16 | Rahul    | rahul@gmail.com  |    43525244 | Education System     | College need to open.              |          |
+|       17 | Ankit    | ankit@gmail.com  |     3634636 | Water and Sanitation | The Water is not passing properly. |          |
+|       19 | Ashish   | ashish@gmail.com |     3363636 | Street Light Problem | Street light is not working.       |          |
++----------+----------+------------------+-------------+----------------------+------------------------------------+----------+
+4 rows in set (0.00 sec)
+
+*/
+
+
+create table budget
+(landhaving varchar(10),
+landrequired varchar(10),
+moneyhaving varchar(10),
+moneyrequired varchar(10),
+labourersinvolved varchar(10),
+emailid varchar(100),
+fullname varchar(100),
+memberissue varchar(100),
+primary key(emailid,memberissue));
+
+
+/*
+
+mysql> desc budget;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| moneyhaving       | varchar(10)  | YES  |     | NULL    |       |
+| moneyrequired     | varchar(10)  | YES  |     | NULL    |       |
+| labourersinvolved | varchar(10)  | YES  |     | NULL    |       |
+| emailid           | varchar(100) | NO   | PRI |         |       |
+| fullname          | varchar(100) | YES  |     | NULL    |       |
+| memberissue       | varchar(100) | NO   | PRI |         |       |
+| moneygiven        | varchar(100) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from budget;
++-------------+---------------+-------------------+----------------+----------+-------------+------------+
+| moneyhaving | moneyrequired | labourersinvolved | emailid        | fullname | memberissue | moneygiven |
++-------------+---------------+-------------------+----------------+----------+-------------+------------+
+| 200000      | 1700000       | 10                | anik@gmail.com | Anik     | Health Care | 2000000    |
++-------------+---------------+-------------------+----------------+----------+-------------+------------+
+1 row in set (0.00 sec)
+
+*/
+
+
+create table biodata
+(fullname varchar(100),
+emailid varchar(100),
+gender varchar(10),
+telephone int(10),
+martial_status varchar(100),
+company varchar(100),
+primary key(emailid));
+
+
+/*
+
+mysql> desc biodata;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| fullname       | varchar(100) | YES  |     | NULL    |       |
+| emailid        | varchar(100) | NO   | PRI |         |       |
+| gender         | varchar(10)  | YES  |     | NULL    |       |
+| telephone      | int(10)      | YES  |     | NULL    |       |
+| martial_status | varchar(100) | YES  |     | NULL    |       |
+| company        | varchar(100) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from biodata;
++-------------+----------------+--------+-----------+----------------+---------+
+| fullname    | emailid        | gender | telephone | martial_status | company |
++-------------+----------------+--------+-----------+----------------+---------+
+| Anik Biswas | anik@gmail.com | male   |  35252525 | Single         | Student |
++-------------+----------------+--------+-----------+----------------+---------+
+1 row in set (0.00 sec)
+
+*/
+
+
+create table feedback
+(fullname varchar(100),
+emailid varchar(100),
+daystodowork varchar(10),
+satisfiedwork varchar(100),
+primary key(emailid));
+
+
+
